@@ -1,0 +1,81 @@
+{
+  "name": "express-api-template",
+  "version": "1.0.0",
+  "description": "GitHub template for creating a Node API powered by Express",
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matttrout/express-api-template.git"
+  },
+  "author": "Matt Trout <matt@matttrout.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matttrout/express-api-template/issues"
+  },
+  "homepage": "https://github.com/matttrout/express-api-template#readme",
+  "scripts": {
+    "start": "pm2 start ecosystem.config.json --no-daemon",
+    "dev": "cross-env NODE_ENV=development nodemon src/index.js",
+    "test": "jest -i",
+    "test:watch": "jest -i --watchAll",
+    "coverage": "jest -i --coverage",
+    "coverage:coveralls": "jest -i --coverage --coverageReporters=text-lcov | coveralls",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier --check **/*.js",
+    "prettier:fix": "prettier --write **/*.js",
+    "docker:prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up",
+    "docker:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up",
+    "docker:test": "docker-compose -f docker-compose.yml -f docker-compose.test.yml up",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "coveralls": "^3.1.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-import-resolver-module-alias": "tenfold/eslint-import-resolver-module-alias",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.2.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-security": "^1.4.0",
+    "husky": "^5.1.3",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.4",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "supertest": "^6.1.3"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.2.6",
+    "helmet": "^4.4.1",
+    "http-status": "^1.5.0",
+    "http-status-codes": "^2.1.4",
+    "module-alias": "^2.2.2",
+    "morgan": "~1.9.1",
+    "pm2": "^4.5.5",
+    "winston": "^3.3.3",
+    "xss-clean": "^0.1.1"
+  },
+  "_moduleAliases": {
+    "~": "./"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint -c .eslintrc.json \"app/**/*.js\" --fix"
+    ]
+  }
+}

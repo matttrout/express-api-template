@@ -1,0 +1,10 @@
+node_modules
+.git
+.gitignore
+.vscode
+.husky
+.editorconfig
+coverage
+.env.example
+README.md
+__tests__
